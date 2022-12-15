@@ -1,8 +1,11 @@
+import { Route, Routes } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import TodosList from './TodosList';
 import Header from './Header';
 import InputTodo from './InputTodo';
+import About from '../pages/About';
+import NotMatch from '../pages/NotMatch';
 
 const TodoContainer = () => {
   const [todos, setTodos] = useState(getInitialTodos());
@@ -74,14 +77,25 @@ const TodoContainer = () => {
   return (
     <div className="container">
       <div className="inner">
-        <Header />
-        <InputTodo addTodoProps={addTodoItem} />
-        <TodosList
-          todos={todos}
-          handleChangeProps={handleChange}
-          deleteTodoProps={delTodo}
-          setUpdate={setUpdate}
-        />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <InputTodo addTodoProps={addTodoItem} />
+                <TodosList
+                  todos={todos}
+                  handleChangeProps={handleChange}
+                  deleteTodoProps={delTodo}
+                  setUpdate={setUpdate}
+                />
+              </>
+            }
+          />
+
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotMatch />} />
+        </Routes>
       </div>
     </div>
   );

@@ -3,6 +3,8 @@ import React from 'react';
 import TodosList from './TodosList';
 import Header from './Header';
 import InputTodo from './InputTodo';
+import About from '../pages/About';
+import NotMatch from '../pages/NotMatch';
 
 class TodoContainer extends React.Component {
   state = {
